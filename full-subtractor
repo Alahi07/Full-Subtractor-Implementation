@@ -1,0 +1,29 @@
+`include "hs.v"
+`include "or_gate.v"
+module fs(
+  input wire a,
+  input wire b,
+  input wire bin,
+  output wire diff,
+  output wire borrow);
+  wire w1,w2,w3;
+  hs u0(
+    .a(a),
+    .b(b),
+    .d1(w1),
+    .bor1(w2)
+  );
+  hs u1(
+    .a(w1),
+    .b(bin),
+    .d1(diff),
+    .bor1(w3)
+  );
+  
+  or_gate u2(
+    .a(w3),
+    .b(w2),
+    .y(borrow)
+  );
+endmodule
+  
